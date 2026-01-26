@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Questionnaire - Sustainability Universitas Airlangga</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/unair.ico') }}">
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* Banner styling */
+    .banner-wrap {
+      background: #fff;
+    }
+    .banner-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    /* Page spacing */
+    .page-section {
+      padding-top: 24px;
+      padding-bottom: 48px;
+    }
+
+    /* Card look */
+    .question-card {
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 16px;
+    }
+    .question-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      background: rgba(25,135,84,.12); /* bootstrap success tint */
+      color: #198754; /* success */
+      flex: 0 0 auto;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <!-- Top Banner -->
+  <header class="banner-wrap py-4">
+    <div class="container">
+      <img
+        src="{{ asset('assets/images/sustainable.png') }}"
+        alt="Sustainability Universitas Airlangga"
+        class="banner-img shadow-sm"
+      />
+    </div>
+  </header>
+
+  <!-- Questionnaire -->
+  <main class="page-section">
+    <div class="container">
+        @if(session('status'))
+            <div class="alert alert-{{ session('status')['status'] }} solid alert-dismissible fade show">
+                <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>
+                {{ session('status')['message'] }}
+            </div>
+        @endif
+
+      <!-- Optional title / description -->
+      {{-- <div class="mb-4">
+        <h1 class="h4 mb-1">Kuesioner Sustainability</h1>
+        <p class="text-muted mb-0">Silakan isi jawaban berikut dengan jujur dan sesuai kondisi.</p>
+      </div> --}}
+
+      <form action="#" method="post" class="row g-4">
+        @csrf
+        <input type="hidden" name="idusers" value="{{ $userdata['idusers'] }}">
+        <input type="hidden" name="tipe_ques" value="{{ $ques }}">
+        <input type="hidden" name="sesi" value="{{ $sesi }}">
+
+        <input type="hidden" name="nextsesi" value="3">
+        <input type="hidden" name="prevsesi" value="1">
+
+
+        <div class="col-12">
+          <div class="card question-card shadow-sm border border-success">
+            <div class="card-header bg-success text-white" style="text-align: center">
+              <h3><b>KUISIONER DOSEN</b> (LECTURER QUESTIONNAIRE)</h3>
+
+            </div>
+            <div class="card-body">
+              <div class="d-flex align-items-start">
+                <div class="w-100">
+                    <p><b>SESI PERTAMA</b></p>
+                  <p>
+                    Di sesi pertama, Anda harus memilih <b>satu</b> jawaban yang menurut Anda paling tepat untuk menjawab pertanyaan. Ada <b>15 pertanyaan pilihan ganda</b>, meliputi <b>3 aspek ESG</b> (Environmental, Social, dan Governance)
+                  </p>
+
+                  <p><b>Instructions:</b></p>
+                  <p>
+                    In the first session, you are required to select <b>one</b> answer that you consider the most appropriate to answer each question. There are <b>15 multiple-choice questions</b>, covering <b>three ESG aspects</b> (Environmental, Social, and Governance)
+                  </p>
+
+                  <br>
+                  <b>Salam hijau dan berkelanjutan,</b><br>
+                  <b>Komite Sustainabilitas</b><br> 
+                  <b>Universitas Airlangga</b>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="card question-card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-start">
+                <div class="w-100">
+                    <p><b>ASPEK ENVIRONMENTAL (ENVIRONMENTAL ASPECT)</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Q1 -->
+        <div class="col-12">
+          <div class="card question-card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex gap-3 align-items-start">
+                <div class="question-number">1</div>
+                <div class="w-100">
+                  <div class="fw-semibold mb-2">Seberapa paham Anda tentang program sustainability di kampus?</div>
+
+                  <div class="d-grid gap-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="q1" id="q1a" value="sangat_paham" required>
+                      <label class="form-check-label" for="q1a">Sangat paham</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="q1" id="q1b" value="paham">
+                      <label class="form-check-label" for="q1b">Paham</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="q1" id="q1c" value="cukup">
+                      <label class="form-check-label" for="q1c">Cukup paham</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="q1" id="q1d" value="kurang">
+                      <label class="form-check-label" for="q1d">Kurang paham</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="q1" id="q1e" value="tidak_paham">
+                      <label class="form-check-label" for="q1e">Tidak paham</label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="col-12">
+          <div class="card question-card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex gap-3 align-items-start">
+                <div class="question-number">2</div>
+                <div class="w-100">
+                  <div class="fw-semibold mb-2">Seberapa sering Anda membawa botol minum / wadah makan sendiri?</div>
+
+                  <select class="form-select" name="q2" required>
+                    <option value="" selected disabled>Pilih jawaban...</option>
+                    <option value="selalu">Selalu</option>
+                    <option value="sering">Sering</option>
+                    <option value="kadang">Kadang-kadang</option>
+                    <option value="jarang">Jarang</option>
+                    <option value="tidak_pernah">Tidak pernah</option>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="col-12">
+          <div class="card question-card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex gap-3 align-items-start">
+                <div class="question-number">3</div>
+                <div class="w-100">
+                  <div class="fw-semibold mb-2">Menurut Anda, apa 1 hal yang paling perlu ditingkatkan terkait sustainability di kampus?</div>
+
+                  <textarea class="form-control" name="q3" rows="4" placeholder="Tulis jawaban Anda..." required></textarea>
+                  <div class="form-text">Contoh: pemilahan sampah, pengurangan plastik sekali pakai, efisiensi energi, dll.</div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="col-12">
+          <div class="d-flex flex-column flex-sm-row gap-2 justify-content-end">
+            <button type="reset" class="btn btn-outline-secondary">Reset</button>
+            <button type="submit" class="btn btn-success">Kirim Jawaban</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
