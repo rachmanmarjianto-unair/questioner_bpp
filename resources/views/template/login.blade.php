@@ -148,6 +148,14 @@
                     >
                   </div>
 
+                  <div class="form-group mb-3">
+                    <label for="captcha">CAPTCHA</label>
+                    <img src="{{ captcha_src(6) }}" alt="CAPTCHA" style="border: 1px solid #ccc;" id="captcha-image">
+                    <span style="font-size: 12px; color:red; padding-left:10px; cursor:pointer" onclick="reloadCaptcha()">Reload CAPTCHA</span>
+                    <input class="form-control" type="text" name="captcha" id="captcha" required placeholder="Masukkan CAPTCHA">
+                  </div>
+
+
                   <button type="submit" class="btn btn-success w-100 py-2 fw-semibold">
                     Login
                   </button>
@@ -175,5 +183,25 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </body>
+
+<script>
+  // document.getElementById('btn-refresh').addEventListener('click', async () => {
+  //   const res = await fetch("{{ route('captcha.refresh') }}", { cache: "no-store" });
+  //   const data = await res.json();
+  //   document.getElementById('captcha-img').src = data.url; // URL pasti beda karena ada &_=timestamp
+  // });
+  function reloadCaptcha(){
+			$.ajax({
+				type: 'GET',
+				url: '/reload-captcha',
+				success: function(data) {
+					$('#captcha-image').attr('src', data.url);
+          // console.log(data);
+				}
+			});
+		}
+</script>
 </html>

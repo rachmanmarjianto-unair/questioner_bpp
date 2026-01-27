@@ -53,14 +53,39 @@ class LoginController extends Controller
     }
 
     public function login(Request $request) {
-        if ($validator = \Validator::make($request->all(), [
+        // if ($validator = \Validator::make($request->all(), [
+        //     'username' => 'required|numeric',
+        //     'password' => 'required|string|max:255',
+        // ])->fails()) {
+        //     return back()->with('status', [
+        //         'status' => 'danger',
+        //         'message' => 'Data tidak valid. Silakan periksa kembali input Anda.'
+        //     ]);
+        // }
+
+        $validator = \Validator::make($request->all(), [
             'username' => 'required|numeric',
             'password' => 'required|string|max:255',
-        ])->fails()) {
-            return back()->with('status', [
-                'status' => 'danger',
-                'message' => 'Data tidak valid. Silakan periksa kembali input Anda.'
-            ]);
+            'captcha' => 'required|captcha',
+        ]);
+
+        if ($validator->fails()) {
+            // return redirect()->back()->withErrors($validator)->withInput();
+            $errors = $validator->errors()->messages(); // Mendapatkan semua error dalam bentuk array
+            $errorCodes = $validator->failed(); // Mendapatkan kode validasi yang gagal
+
+            if(isset($errors['captcha'])){
+                return redirect()->back()->with('status', [
+                        'status' => 'danger',
+                        'message' => 'Captcha tidak sesuai. Silakan coba lagi.'
+                    ]);
+            }
+            else{
+                return redirect()->back()->with('status', [
+                        'status' => 'danger',
+                        'message' => 'NIP/NIM atau Password salah'
+                    ]);
+            }
         }
 
         $curl = curl_init();

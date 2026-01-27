@@ -14,6 +14,15 @@ Route::get('/', function () {
 //     return view('template.login');
 // });
 
+Route::get('/reload-captcha', function () {
+    return response()->json([
+        'url' => captcha_src(6) . '&_=' . time(),
+    ])->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+      ->header('Pragma', 'no-cache');
+})->name('captcha.refresh');
+
+
+
 Route::get('/admin_login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin_login', [AdminController::class, 'login'])->name('exec_login_admin');
 
