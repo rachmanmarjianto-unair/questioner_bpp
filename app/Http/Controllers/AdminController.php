@@ -212,6 +212,8 @@ class AdminController extends Controller
                     'esg_ques' => $ju->esg_ques,
                     'jawaban' => array()
                 );
+
+                $unit_kerja = $ju->nama_unit_kerja;
             }
 
             //idkelompok_pertanyaan adalah kombinasi dari sesi dan join_table
