@@ -10,13 +10,13 @@ class ApiController extends Controller
 {
     public function index(Request $request)
     {
-        $clientIp = $request->ip();
+        // $clientIp = $request->ip();
 
-        $whitelist =['127.0.0.1'];
+        // $whitelist =['127.0.0.1'];
 
-        if(!in_array($clientIp, $whitelist)){
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
+        // if(!in_array($clientIp, $whitelist)){
+        //     return response()->json(['message' => 'Unauthorized'], 403);
+        // }
 
         if(!$request->has('nimnip')){
             return response()->json(['message' => 'Parameter nimnip diperlukan.'], 400);

@@ -10,10 +10,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Route::get('/login', function () {
-//     return view('template.login');
-// });
-
 Route::get('/reload-captcha', function () {
     return response()->json([
         'url' => captcha_src(6) . '&_=' . time(),
@@ -52,4 +48,6 @@ Route::middleware(['akses:all'])->group(function () {
 
 Route::middleware(['akses:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
+    Route::get('/admin_logout', [AdminController::class, 'logout'])->name('admin.logout');
+    Route::get('/admin/dataquestioner/{ques}/{unit_kerja}', [AdminController::class, 'dataquestioner'])->name('dataquestioner');
 });

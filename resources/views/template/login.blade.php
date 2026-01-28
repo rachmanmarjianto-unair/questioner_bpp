@@ -151,7 +151,7 @@
                   <div class="form-group mb-3">
                     <label for="captcha">CAPTCHA</label>
                     <img src="{{ captcha_src(6) }}" alt="CAPTCHA" style="border: 1px solid #ccc;" id="captcha-image">
-                    <span style="font-size: 12px; color:red; padding-left:10px; cursor:pointer" onclick="reloadCaptcha()">Reload CAPTCHA</span>
+                    <span style="font-size: 12px; color:red; padding-left:10px; cursor:pointer" onclick="reloadCaptcha()">klik saya jika Captcha terlalu sulit</span>
                     <input class="form-control" type="text" name="captcha" id="captcha" required placeholder="Masukkan CAPTCHA">
                   </div>
 
@@ -161,7 +161,7 @@
                   </button>
 
                     @if(session('status'))
-                        @if(session('status')['status'] !== null)
+                        @if(session()->has('status.status'))
                             <div class="alert alert-{{ session('status')['status'] }} solid alert-dismissible fade show">
                                 <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span></button>
                                 {{ session('status')['message'] }}

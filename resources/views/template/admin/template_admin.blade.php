@@ -67,6 +67,7 @@
     /* Footer small */
     .small-muted{ color:#6c757d; font-size:.9rem; }
   </style>
+  @yield('css_page')
 </head>
 
 <body>
@@ -87,7 +88,7 @@
       <div class="collapse navbar-collapse" id="topNav">
         <!-- Menu kiri -->
         <ul class="navbar-nav ms-lg-3 me-auto gap-lg-1">
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"
                href="">
               Dashboard
@@ -113,7 +114,7 @@
                href="">
               Users
             </a>
-          </li>
+          </li> --}}
         </ul>
 
         <!-- Kanan: user dropdown -->
@@ -124,14 +125,13 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <a class="dropdown-item" href="">Profile</a>
+                {{-- <a class="dropdown-item" href="">Profile</a> --}}
               </li>
               <li><hr class="dropdown-divider"></li>
 
               <!-- Logout (sesuaikan route/logout kamu) -->
               <li>
-                <form method="POST" action="">
-                  @csrf
+                <form method="GET" action="{{ route('admin.logout') }}">
                   <button class="dropdown-item text-danger" type="submit">Logout</button>
                 </form>
               </li>
@@ -176,5 +176,6 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  @yield('js_page')
 </body>
 </html>

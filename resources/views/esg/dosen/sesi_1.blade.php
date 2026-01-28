@@ -335,7 +335,7 @@
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="nomor[9]" id="nomor[9]c" value="3" @if(isset($jawaban[9]) && $jawaban[9] == 3) checked @endif>
-                  <label class="form-check-label" for="nomor[9]c">Kampus C  (Campus B)</label>
+                  <label class="form-check-label" for="nomor[9]c">Kampus C  (Campus C)</label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="nomor[9]" id="nomor[9]d" value="4" @if(isset($jawaban[9]) && $jawaban[9] == 4) checked @endif>

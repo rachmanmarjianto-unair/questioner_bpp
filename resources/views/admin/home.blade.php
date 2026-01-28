@@ -62,7 +62,7 @@
               <tbody>
                 @foreach($data_pemilih as $key => $data)
                     <tr>
-                        <td>{{ $data->nama_unit_kerja }}</td>
+                        <td>{{ $data->nama_unit_kerja }} <a href="{{ route('dataquestioner', ['ques' => '1', 'unit_kerja' => $data->id_unit_kerja]) }}">(Sustainability)</a> <a href="{{ route('dataquestioner', ['ques' => '2', 'unit_kerja' => $data->id_unit_kerja]) }}">(ESG)</a></td>
                         <td>{{ $data->sustain_tendik }}</td>
                         <td>{{ $data->sustain_dosen }}</td>
                         <td>{{ $data->sustain_mahasiswa }}</td>

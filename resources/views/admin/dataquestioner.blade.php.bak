@@ -1,0 +1,103 @@
+@extends('template.admin.template_admin')
+
+@section('title', 'Data Questioner {{ $nama_ques }} - Admin')
+
+@section('css_page')
+    <style>
+        body { background:#f5f7f6; }
+        .panel-card{
+        border: 1px solid rgba(0,0,0,.08);
+        border-radius: 16px;
+        }
+        /* bikin tabel lebih enak dibaca */
+        table.dataTable td, table.dataTable th { white-space: nowrap; }
+    </style>
+@endsection
+
+@section('content')
+  <div class="container py-4">
+    <div class="card panel-card shadow-sm">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h1 class="h5 mb-0">Daftar Responden</h1>
+          <button class="btn btn-success btn-sm">Export</button>
+        </div>
+
+        <!-- penting: wrapper horizontal scroll -->
+        <div class="table-responsive">
+          <table id="myTable" class="table table-striped table-hover align-middle w-100">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>NIM/NIP</th>
+                <th>Nama</th>
+                <th>Unit Kerja</th>
+                <th>Role</th>
+                <th>ESG Selesai</th>
+                <th>Sustainability Selesai</th>
+                <th>Tanggal Submit</th>
+                <th>IP Address</th>
+                <th>User Agent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>435513</td>
+                <td>Contoh Nama</td>
+                <td>Fakultas Kedokteran</td>
+                <td>Dosen</td>
+                <td>Ya</td>
+                <td>Tidak</td>
+                <td>2026-01-28 10:11</td>
+                <td>10.10.10.10</td>
+                <td>Mozilla/5.0 ...</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>182265</td>
+                <td>Nama Lain</td>
+                <td>Direktorat Sistem Informasi</td>
+                <td>Tendik</td>
+                <td>Ya</td>
+                <td>Ya</td>
+                <td>2026-01-28 10:30</td>
+                <td>10.10.10.20</td>
+                <td>Mozilla/5.0 ...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="text-muted small mt-2">
+          * Scroll horizontal muncul otomatis jika kolom melebihi lebar layar.
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('js_page')
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/datatables.net@2.1.0/js/dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/datatables.net-bs5@2.1.0/js/dataTables.bootstrap5.min.js"></script>
+
+  <script>
+    $(function () {
+      new DataTable('#myTable', {
+        paging: false,        // 1) no pagination
+        scrollX: true,        // 2) horizontal scroll (DataTables)
+        autoWidth: false,
+        info: true,
+        searching: true,
+        order: [],
+        language: {
+          search: "Cari:",
+          info: "Menampilkan _TOTAL_ data"
+        }
+      });
+    });
+  </script>
+@endsection
