@@ -128,7 +128,7 @@
             extend: 'excelHtml5',
             text: 'Download Excel',
             className: 'btn btn-success',
-            title: 'Rekap_Kuesioner'
+            title: 'Rekap_Kuesioner_{{ $nama_ques }}_{{ date("Ymd_His") }}',
           }
         ],
 
