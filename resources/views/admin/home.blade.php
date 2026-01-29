@@ -61,11 +61,23 @@
               </thead>
               <tbody>
                 @php
+                    $sustain_dosen = 0;
+                    $sustain_tendik = 0;
+                    $sustain_mahasiswa = 0;
+                    $esg_dosen = 0;
+                    $esg_tendik = 0;
+                    $esg_mahasiswa = 0;
                     $jumlah_sustain = 0;
                     $jumlah_esg = 0;
                 @endphp
                 @foreach($data_pemilih as $key => $data)
                     @php
+                        $sustain_dosen += $data->sustain_dosen;
+                        $sustain_tendik += $data->sustain_tendik;
+                        $sustain_mahasiswa += $data->sustain_mahasiswa;
+                        $esg_dosen += $data->esg_dosen;
+                        $esg_tendik += $data->esg_tendik;
+                        $esg_mahasiswa += $data->esg_mahasiswa;
                         $jumlah_sustain += $data->sustain_tendik + $data->sustain_dosen + $data->sustain_mahasiswa;
                         $jumlah_esg += $data->esg_tendik + $data->esg_dosen + $data->esg_mahasiswa;
                     @endphp
@@ -82,7 +94,15 @@
               </tbody>
                 <tfoot>
                     <tr>
-                        <th>Total Responden</th>
+                        <th rowspan="2">Total Responden</th>
+                        <th >{{ $sustain_tendik }}</th>
+                        <th >{{ $sustain_dosen }}</th>
+                        <th >{{ $sustain_mahasiswa }}</th>
+                        <th style="background-color:rgb(227, 232, 232);">{{ $esg_tendik }}</th>
+                        <th style="background-color:rgb(227, 232, 232);">{{ $esg_dosen }}</th>   
+                        <th style="background-color:rgb(227, 232, 232);">{{ $esg_mahasiswa }}</th>
+                    </tr>
+                    <tr>
                         <th colspan="3" style="text-align: center;">Sustainability: {{ $jumlah_sustain }}</th>
                         <th colspan="3" style="background-color:rgb(227, 232, 232); text-align: center;">ESG: {{ $jumlah_esg }}</th>
                     </tr>
