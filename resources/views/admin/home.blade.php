@@ -60,7 +60,15 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                    $jumlah_sustain = 0;
+                    $jumlah_esg = 0;
+                @endphp
                 @foreach($data_pemilih as $key => $data)
+                    @php
+                        $jumlah_sustain += $data->sustain_tendik + $data->sustain_dosen + $data->sustain_mahasiswa;
+                        $jumlah_esg += $data->esg_tendik + $data->esg_dosen + $data->esg_mahasiswa;
+                    @endphp
                     <tr>
                         <td>{{ $data->nama_unit_kerja }} <a href="{{ route('dataquestioner', ['ques' => '1', 'unit_kerja' => $data->id_unit_kerja]) }}">(Sustainability)</a> <a href="{{ route('dataquestioner', ['ques' => '2', 'unit_kerja' => $data->id_unit_kerja]) }}">(ESG)</a></td>
                         <td>{{ $data->sustain_tendik }}</td>
@@ -72,10 +80,17 @@
                     </tr>
                 @endforeach
               </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total Responden</th>
+                        <th colspan="3" style="text-align: center;">Sustainability: {{ $jumlah_sustain }}</th>
+                        <th colspan="3" style="background-color:rgb(227, 232, 232); text-align: center;">ESG: {{ $jumlah_esg }}</th>
+                    </tr>
+                </tfoot>
             </table>
           </div>
 
-        </div>
+            
       </div>
     </div>
   </div>

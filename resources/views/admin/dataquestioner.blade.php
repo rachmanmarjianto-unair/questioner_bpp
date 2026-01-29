@@ -1,6 +1,6 @@
 @extends('template.admin.template_admin')
 
-@section('title', 'Data Questioner {{ $nama_ques }} - Admin')
+@section('title', 'Data Questioner - Admin')
 
 @section('css_page')
     <!-- Bootstrap 5 -->
@@ -32,7 +32,7 @@
 @section('content')
   <div class="container py-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h4 class="mb-0">Rekap Kuesioner</h4>
+      <h4 class="mb-0">Rekap Kuesioner {{ $nama_ques }} - {{ $unit_kerja }}</h4>
       <span class="text-muted small">Tanpa pagination • Scroll horizontal • Export Excel</span>
     </div>
 
