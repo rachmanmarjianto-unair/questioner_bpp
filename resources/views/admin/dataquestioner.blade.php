@@ -264,14 +264,17 @@
 
     function initDatatable() {
       new DataTable('#myTable', {
-        paging: false,          // no pagination
-        scrollX: true,          // horizontal scroll
+        paging: true,          // ✅ AKTIFKAN pagination
+        pageLength: 50,        // ✅ 50 row per halaman
+        lengthChange: false,   // (opsional) sembunyikan dropdown jumlah row
+
+        scrollX: true,
         scrollCollapse: true,
         autoWidth: false,
 
         dom: '<"row mb-2"<"col-12 col-md-6"B><"col-12 col-md-6"f>>' +
             '<"row"<"col-12"tr>>' +
-            '<"row mt-2"<"col-12"i>>',
+            '<"row mt-2"<"col-12 col-md-6"i><"col-12 col-md-6"p>>',
 
         buttons: [
           {
@@ -284,11 +287,18 @@
 
         language: {
           search: "Cari:",
-          info: "Menampilkan _TOTAL_ baris",
+          info: "Menampilkan _START_–_END_ dari _TOTAL_ baris",
           infoEmpty: "Tidak ada data",
-          zeroRecords: "Data tidak ditemukan"
+          zeroRecords: "Data tidak ditemukan",
+          paginate: {
+            first: "Awal",
+            last: "Akhir",
+            next: "›",
+            previous: "‹"
+          }
         }
       });
+
     }
   </script>
 @endsection
