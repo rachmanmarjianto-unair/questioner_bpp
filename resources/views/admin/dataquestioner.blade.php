@@ -3,6 +3,8 @@
 @section('title', 'Data Questioner - Admin')
 
 @section('css_page')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -141,6 +143,12 @@
     var cur_user = 0;
     var cur_user2 = 0;
 
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    });
+
     window.onload = function() {  
       // console.log(pertanyaan);
       
@@ -154,7 +162,7 @@
           url: '{{ route('admin.getdataquestioner') }}',
           method: 'POST',
           data: {
-            _token: '{{ csrf_token() }}',
+            // _token: '{{ csrf_token() }}',
             jenis_ques: '{{ $ques }}',
             id_unit_kerja: '{{ $id_unit_kerja }}',
             start: start,
@@ -246,8 +254,8 @@
                 console.error("Gagal:", err);
                 Swal.close();
                 Swal.fire({
-                    title: "Gagal Migrasi",
-                    text: "Terjadi kesalahan dalam proses migrasi sebagian data.",
+                    title: "Gagal tarik data",
+                    text: "Terjadi kesalahan dalam proses tarik data.",
                     icon: "error"
                 });
             });
