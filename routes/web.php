@@ -50,4 +50,5 @@ Route::middleware(['akses:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
     Route::get('/admin_logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/admin/dataquestioner/{ques}/{unit_kerja}', [AdminController::class, 'dataquestioner'])->name('dataquestioner');
+    Route::post('/admin/getdataquestioner', [AdminController::class, 'getdataquestioner'])->name('admin.getdataquestioner');
 });
